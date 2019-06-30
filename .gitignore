@@ -1,0 +1,6 @@
+build/
+DerivedData/
+*.pbxuser
+xcuserdata/
+*.pbxproj
+*.DS_Store
