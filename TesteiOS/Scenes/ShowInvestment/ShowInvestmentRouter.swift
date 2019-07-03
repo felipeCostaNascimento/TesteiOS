@@ -7,3 +7,19 @@
 //
 
 import UIKit
+
+
+protocol ShowInvestmentRoutingLogic {
+    
+}
+
+protocol ShowInvestmentDataPassing {
+    
+}
+
+
+class ShowInvestmentRouter: NSObject, ShowInvestmentRoutingLogic, ShowInvestmentDataPassing {
+    
+    weak var viewController: ShowInvestmentViewController?
+    var dataStore: ShowInvestmentDataStore?
+}

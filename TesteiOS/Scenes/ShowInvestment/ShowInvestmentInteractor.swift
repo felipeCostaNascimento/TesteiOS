@@ -7,3 +7,20 @@
 //
 
 import UIKit
+
+
+protocol ShowInvestmentBusinessLogic {
+    
+}
+
+
+protocol ShowInvestmentDataStore {
+    
+}
+
+
+class ShowInvestmentInteractor: ShowInvestmentBusinessLogic, ShowInvestmentDataStore {
+    
+    var presenter: ShowInvestmentPresentationLogic?
+    
+}

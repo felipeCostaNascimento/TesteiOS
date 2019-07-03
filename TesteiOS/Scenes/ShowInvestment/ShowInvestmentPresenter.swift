@@ -7,3 +7,14 @@
 //
 
 import UIKit
+
+
+protocol ShowInvestmentPresentationLogic {
+    
+}
+
+
+class ShowInvestmentPresenter: ShowInvestmentPresentationLogic {
+    
+    weak var viewController: ShowInvestmentDisplayLogic?
+}

@@ -7,3 +7,20 @@
 //
 
 import UIKit
+
+
+protocol CreateContactBusinessLogic {
+    
+}
+
+
+protocol CreateContactDataStore {
+    
+}
+
+
+class CreateContactInteractor: CreateContactBusinessLogic, CreateContactDataStore {
+    
+    var presenter: CreateContactPresentationLogic?
+    
+}

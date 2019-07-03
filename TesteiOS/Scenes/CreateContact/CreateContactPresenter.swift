@@ -7,3 +7,14 @@
 //
 
 import UIKit
+
+
+protocol CreateContactPresentationLogic {
+    
+}
+
+
+class CreateContactPresenter: CreateContactPresentationLogic {
+    
+    weak var viewController: CreateContactDisplayLogic?
+}
