@@ -1,24 +1,23 @@
 //
-//  ContactViewController.swift
+//  SuccessContactViewController.swift
 //  TesteiOS
 //
-//  Created by Felipe Costa on 30/06/19.
+//  Created by Felipe Costa on 03/07/19.
 //  Copyright © 2019 Felipe Costa. All rights reserved.
 //
 
 import UIKit
 
 
-protocol CreateContactDisplayLogic: class {
+protocol SuccessContactDisplayLogic: class {
     
 }
 
 
-
-class CreateContactViewController: UIViewController {
+class SuccessContactViewController: UIViewController {
     
-    var interactor: CreateContactBusinessLogic?
-    var router: (NSObjectProtocol & CreateContactRoutingLogic)?
+    var interactor: SuccessContactBusinessLogic?
+    var router: (NSObjectProtocol & SuccessContactRoutingLogic)?
     
     
     // MARK: Object lifecycle

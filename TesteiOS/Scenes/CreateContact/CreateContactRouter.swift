@@ -13,12 +13,8 @@ protocol CreateContactRoutingLogic {
     
 }
 
-protocol CreateContactDataPassing {
-    
-}
 
-
-class CreateContactRouter: NSObject, CreateContactRoutingLogic, CreateContactDataPassing {
+class CreateContactRouter: NSObject, CreateContactRoutingLogic {
     
     weak var viewController: CreateContactViewController?
     var dataStore: CreateContactDataStore?
