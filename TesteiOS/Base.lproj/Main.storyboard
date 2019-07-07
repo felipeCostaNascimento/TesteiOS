@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Investimento-->
         <scene sceneID="YMi-jA-ZnI">
             <objects>
                 <viewController id="5vi-XV-HIX" customClass="ShowInvestmentViewController" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -24,16 +24,16 @@
                                 <state key="normal" title="ShowInvestment"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="2Sg-Qb-Brp"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="z7Q-ME-9jO"/>
+                    <tabBarItem key="tabBarItem" title="Investimento" id="z7Q-ME-9jO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55A-5J-eGj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="476" y="324"/>
+            <point key="canvasLocation" x="422" y="-424"/>
         </scene>
-        <!--Item 1-->
+        <!--Contato-->
         <scene sceneID="2Ya-Fc-7HD">
             <objects>
                 <viewController id="ega-38-1UH" customClass="CreateContactViewController" customModule="TesteiOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -50,17 +50,17 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="V62-D6-LoR"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="rIh-7G-dLY"/>
-                    <navigationItem key="navigationItem" id="ZsD-Ph-Bmg"/>
+                    <navigationItem key="navigationItem" title="Contato" id="ZsD-Ph-Bmg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTK-cH-xxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1220" y="-349"/>
+            <point key="canvasLocation" x="1166" y="301"/>
         </scene>
-        <!--View Controller-->
+        <!--Contato-->
         <scene sceneID="wVE-Pf-1sq">
             <objects>
                 <viewController id="5ST-lE-CSq" sceneMemberID="viewController">
@@ -77,16 +77,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="wyB-38-CI7"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Contato" id="JZI-jN-6rQ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Jb-0c-qAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974" y="-349"/>
+            <point key="canvasLocation" x="1919" y="301"/>
         </scene>
-        <!--Item-->
+        <!--Contato-->
         <scene sceneID="bvm-Hr-bP5">
             <objects>
-                <navigationController id="p24-V1-Vmt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="V5V-gc-J3l"/>
+                <navigationController title="Contato" id="p24-V1-Vmt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Contato" id="V5V-gc-J3l"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ROG-e9-HzW">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -97,7 +98,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7A8-ml-J03" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="476" y="-349"/>
+            <point key="canvasLocation" x="422" y="301"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="7Qi-ne-E9k">
@@ -109,8 +110,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="p24-V1-Vmt" kind="relationship" relationship="viewControllers" id="Tsb-rM-3K6"/>
                         <segue destination="5vi-XV-HIX" kind="relationship" relationship="viewControllers" id="qFH-PH-E9p"/>
+                        <segue destination="p24-V1-Vmt" kind="relationship" relationship="viewControllers" id="Tsb-rM-3K6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8RM-CB-bzG" userLabel="First Responder" sceneMemberID="firstResponder"/>
