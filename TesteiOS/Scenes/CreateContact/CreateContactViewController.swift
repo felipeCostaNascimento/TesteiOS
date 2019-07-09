@@ -37,7 +37,14 @@ class CreateContactViewController: UIViewController {
     // MARK: Setup
     
     private func setup() {
-        
+        let viewController = self
+        let interactor = CreateContactInteractor()
+        let presenter = CreateContactPresenter()
+        let router = CreateContactRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        router.dataStore = interactor
     }
     
     
@@ -52,4 +59,20 @@ class CreateContactViewController: UIViewController {
             }
         }
     }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fetchContactCells()
+    }
+    
+    
+    func fetchContactCells() {
+        
+    }
+}
+
+
+extension CreateContactViewController: CreateContactDisplayLogic {
+    
 }

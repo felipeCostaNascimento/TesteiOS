@@ -9,4 +9,18 @@
 import UIKit
 
 
-
+enum CreateContact {
+    // MARK: Use cases
+    
+    enum FetchContactCells {
+        struct Request {
+            
+        }
+        
+        struct Response {
+            
+        }
+        
+        
+    }
+}
