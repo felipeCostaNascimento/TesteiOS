@@ -17,7 +17,6 @@ enum MainTabBar {
         
         struct Response {
             var tabBar: UITabBar
-            var tabBarView: TabActivableView
         }
         
         struct ViewModel {
@@ -25,15 +24,4 @@ enum MainTabBar {
         }
     }
     
-    enum TabChangeIndex {
-        struct Request {
-            var index: Int
-        }
-        
-        struct Response {
-        }
-        
-        struct ViewModel {
-        }
-    }
 }

@@ -9,27 +9,18 @@
 import UIKit
 
 
+protocol TabActivableView: UIView {
+    var activeView: UIView {get}
+    func setActiveIndex(index:Int)
+    func getActiveIndex() -> Int
+}
+
 protocol MainTabBarPresentationLogic {
     func presentTabBarView(response: MainTabBar.TabBarView.Response)
 }
 
-
-class MainTabBarPresenter: MainTabBarPresentationLogic {
+class MainTabBarPresenter {
     weak var viewController: MainTabBarDisplayLogic?
-    
-    
-    func presentTabBarView(response: MainTabBar.TabBarView.Response) {
-        adjustTabBarFont()
-        if let items = response.tabBar.items {
-            adjustTabBarItemsVerticalPosition(items: items, yPos: -14)
-        }
-        let tabBarView = response.tabBarView
-        tabBarView.activeView.backgroundColor = UIColor.appColorDarkRed
-        tabBarView.backgroundColor = UIColor.appColorRed
-
-        let viewModel = MainTabBar.TabBarView.ViewModel(tabBarView: tabBarView)
-        viewController?.displayTabBarView(viewModel: viewModel)
-    }
     
     func adjustTabBarItemsVerticalPosition(items:[UITabBarItem], yPos: CGFloat) {
         for item in items {
@@ -47,4 +38,21 @@ class MainTabBarPresenter: MainTabBarPresentationLogic {
         
     }
     
+}
+
+extension MainTabBarPresenter: MainTabBarPresentationLogic {
+    func presentTabBarView(response: MainTabBar.TabBarView.Response) {
+        
+        adjustTabBarFont()
+        if let items = response.tabBar.items {
+            adjustTabBarItemsVerticalPosition(items: items, yPos: -14)
+        }
+        
+        let tabBarView = MainTabBarActivableView(frame: response.tabBar.bounds, numberOfTabs: response.tabBar.items?.count ?? 0)
+        tabBarView.activeView.backgroundColor = UIColor.appColorDarkRed
+        tabBarView.backgroundColor = UIColor.appColorRed
+        
+        let viewModel = MainTabBar.TabBarView.ViewModel(tabBarView: tabBarView)
+        viewController?.displayTabBarView(viewModel: viewModel)
+    }
 }

@@ -15,6 +15,7 @@ protocol MainTabBarDisplayLogic: class {
 
 class MainTabBarController: UITabBarController {
     var interactor: MainTabBarBusinessLogic?
+    var tabBarView: TabActivableView?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -52,6 +53,8 @@ class MainTabBarController: UITabBarController {
 extension MainTabBarController: UITabBarControllerDelegate {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let items = tabBar.items else { return }
+        guard let tbv = tabBarView else { return }
+        
         var index = 0
         for i in items {
             if i == item {
@@ -59,13 +62,14 @@ extension MainTabBarController: UITabBarControllerDelegate {
             }
             index += 1
         }
-        interactor?.tabDidChange(request: MainTabBar.TabChangeIndex.Request(index: index))
+        tbv.setActiveIndex(index: index)
     }
 }
 
 
 extension MainTabBarController: MainTabBarDisplayLogic {
     func displayTabBarView(viewModel: MainTabBar.TabBarView.ViewModel) {
+        self.tabBarView = viewModel.tabBarView
         self.tabBar.insertSubview(viewModel.tabBarView, at: 0)
     }
 }

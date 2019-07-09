@@ -28,10 +28,28 @@
                         <viewLayoutGuide key="safeArea" id="2Sg-Qb-Brp"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Investimento" id="z7Q-ME-9jO"/>
+                    <navigationItem key="navigationItem" title="Investimento" id="wMc-Cu-TTO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55A-5J-eGj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="422" y="-424"/>
+            <point key="canvasLocation" x="1166" y="-391"/>
+        </scene>
+        <!--Investimento-->
+        <scene sceneID="uMw-FE-DbJ">
+            <objects>
+                <navigationController id="30u-O9-8Z0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Investimento" id="P88-5O-JV7"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hCc-5S-VhD">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5vi-XV-HIX" kind="relationship" relationship="rootViewController" id="vB1-VY-yb3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pb9-ZC-egb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="422" y="-391"/>
         </scene>
         <!--Contato-->
         <scene sceneID="2Ya-Fc-7HD">
@@ -110,7 +128,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="5vi-XV-HIX" kind="relationship" relationship="viewControllers" id="qFH-PH-E9p"/>
+                        <segue destination="30u-O9-8Z0" kind="relationship" relationship="viewControllers" id="QHc-vm-fy5"/>
                         <segue destination="p24-V1-Vmt" kind="relationship" relationship="viewControllers" id="Tsb-rM-3K6"/>
                     </connections>
                 </tabBarController>
