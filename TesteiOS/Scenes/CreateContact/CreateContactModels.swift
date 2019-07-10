@@ -18,9 +18,11 @@ enum CreateContact {
         }
         
         struct Response {
-            
+            var contactCells: [ContactCell]
         }
         
-        
+        struct ViewModel {
+            var contactCells: [ContactCell]
+        }
     }
 }

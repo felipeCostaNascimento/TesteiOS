@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol CreateContactDisplayLogic: class {
-    
+    func displayFetchedContactCells(viewModel: CreateContact.FetchContactCells.ViewModel)
 }
 
 
@@ -44,6 +44,8 @@ class CreateContactViewController: UIViewController {
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
         router.dataStore = interactor
     }
     
@@ -68,11 +70,14 @@ class CreateContactViewController: UIViewController {
     
     
     func fetchContactCells() {
-        
+        let request = CreateContact.FetchContactCells.Request()
+        interactor?.fetchContactCells(request: request)
     }
 }
 
 
 extension CreateContactViewController: CreateContactDisplayLogic {
-    
+    func displayFetchedContactCells(viewModel: CreateContact.FetchContactCells.ViewModel) {
+        print(viewModel.contactCells)
+    }
 }

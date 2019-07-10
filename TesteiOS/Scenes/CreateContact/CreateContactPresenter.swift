@@ -10,11 +10,18 @@ import UIKit
 
 
 protocol CreateContactPresentationLogic {
-    
+    func presentFetchedContactCells(response: CreateContact.FetchContactCells.Response)
 }
 
 
-class CreateContactPresenter: CreateContactPresentationLogic {
+class CreateContactPresenter {
     
     weak var viewController: CreateContactDisplayLogic?
+}
+
+extension CreateContactPresenter: CreateContactPresentationLogic {
+    func presentFetchedContactCells(response: CreateContact.FetchContactCells.Response) {
+        let viewModel = CreateContact.FetchContactCells.ViewModel(contactCells: response.contactCells)
+        viewController?.displayFetchedContactCells(viewModel: viewModel)
+    }
 }

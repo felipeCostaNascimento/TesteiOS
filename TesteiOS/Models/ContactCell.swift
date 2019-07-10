@@ -53,3 +53,40 @@ struct TypeField {
 }
 
 
+
+extension ContactCell {
+    init?(json: [String:Any]) {
+        guard let id =          json["id"] as? Int,
+            let type =          json["type"] as? Int,
+            let message =       json["message"] as? String,
+            let typefield =     json["typefield"],
+            let hidden =        json["hidden"] as? Bool,
+            let topSpacing =    json["topSpacing"] as? Float,
+            let show =          json["show"],
+            let required =      json["required"] as? Bool
+        else {
+            return nil
+        }
+        
+        if let ct = CellType(rawValue: type) {
+            self.type = ct
+        } else {
+            return nil
+        }
+        
+        if let tf = typefield as? Int {
+            if let field = TypeField.Field(rawValue: tf) {
+                self.typefield = TypeField(typeField: field)
+            } else {
+                return nil
+            }
+        }
+        
+        self.id = id
+        self.message = message
+        self.hidden = hidden
+        self.topSpacing = topSpacing
+        self.show = show as? Int
+        self.required = required
+    }
+}

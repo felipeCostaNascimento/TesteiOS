@@ -10,17 +10,29 @@ import UIKit
 
 
 protocol CreateContactBusinessLogic {
-    
+    func fetchContactCells(request: CreateContact.FetchContactCells.Request)
 }
 
 
 protocol CreateContactDataStore {
-    
+    var contactCells: [ContactCell]? {get}
 }
 
 
-class CreateContactInteractor: CreateContactBusinessLogic, CreateContactDataStore {
+class CreateContactInteractor: CreateContactDataStore {
     
     var presenter: CreateContactPresentationLogic?
-    
+    var contactCellsWorker = ContactCellsWorker(storeStore: ContactCellsAPI())
+    var contactCells: [ContactCell]?
 }
+
+extension CreateContactInteractor: CreateContactBusinessLogic {
+    func fetchContactCells(request: CreateContact.FetchContactCells.Request) {
+        contactCellsWorker.fetchContactCells { (contactCells) in
+            self.contactCells = contactCells
+            let response = CreateContact.FetchContactCells.Response(contactCells: contactCells)
+            self.presenter?.presentFetchedContactCells(response: response)
+        }
+    }
+}
+

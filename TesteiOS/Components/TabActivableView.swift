@@ -60,11 +60,11 @@ class MainTabBarActivableView: UIView, TabActivableView {
     
     func setActiveIndex(index: Int) {
         if index < 0 {
-            debugPrint("Can't set an index less than zero")
+            debugPrint("Cannot set an index less than zero")
             return
         }
         if index > numberOfTabs - 1 {
-            debugPrint("Can't set an index greater than or equal to the number of tabs")
+            debugPrint("Cannot set an index greater than or equal to the number of tabs")
             return
         }
         self.index = index
