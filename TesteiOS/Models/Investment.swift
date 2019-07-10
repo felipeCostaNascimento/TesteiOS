@@ -9,3 +9,13 @@
 import Foundation
 
 
+struct Investment {
+    
+}
+
+
+extension Investment {
+    init?(json: [String:Any]) {
+        
+    }
+}
