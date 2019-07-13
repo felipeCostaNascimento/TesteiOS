@@ -9,12 +9,16 @@
 import UIKit
 
 
-class InvestmentAPI: APIConfig {
-    var serviceConfiguration = Configuration(service: "fund.json")
+class InvestmentAPI: DataAPI {
+    var config: APIConfigurationProtocol
+    
+    init() {
+        self.config = APIConfig(serviceName: "cells.json")!
+    }
     
     func fetchData(url: URL, completion: @escaping (Investment?) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let resultData = data, error == nil, let httpResponse = response as? HTTPURLResponse, self.serviceConfiguration.isStatusValid(status: httpResponse.statusCode) {
+            if let resultData = data, error == nil, let httpResponse = response as? HTTPURLResponse, self.config.isStatusValid(status: httpResponse.statusCode) {
                 do {
                     let json = try JSONSerialization.jsonObject(with: resultData, options: .allowFragments)
                     if let dict = json as? NSDictionary, let data = dict["screen"] as? [String:Any] {
@@ -35,8 +39,8 @@ class InvestmentAPI: APIConfig {
 
 extension InvestmentAPI: InvestmentStoreProtocol {
     func fetchInvestment(completionHandler: @escaping (Investment?, InvestmentStoreError?) -> Void) {
-        guard let url = URL(string: serviceConfiguration.fullEndpoint()) else {
-            completionHandler(nil, InvestmentStoreError.CannotFetch("Wrong url service \(serviceConfiguration.fullEndpoint())"))
+        guard let url = URL(string: config.serviceEndpoint()) else {
+            completionHandler(nil, InvestmentStoreError.CannotFetch("Wrong url service \(config.serviceEndpoint())"))
             return
         }
         fetchData(url: url) { (result) in
@@ -49,7 +53,7 @@ extension InvestmentAPI: InvestmentStoreProtocol {
     }
     
     func fetchInvestment(completionHandler: @escaping InvestmentStoreFetchInvestmentCompletionHandler) {
-        guard let url = URL(string: serviceConfiguration.fullEndpoint()) else {
+        guard let url = URL(string: config.serviceEndpoint()) else {
             completionHandler(InvestmentStoreResult.Failure(error: InvestmentStoreError.CannotFetch("Cannot fetch investment")))
             return
         }
@@ -63,7 +67,7 @@ extension InvestmentAPI: InvestmentStoreProtocol {
     }
     
     func fetchInvestment(completionHandler: @escaping (() throws -> Investment?) -> Void) {
-        guard let url = URL(string: serviceConfiguration.fullEndpoint()) else {
+        guard let url = URL(string: config.serviceEndpoint()) else {
             completionHandler{ return nil }
             return
         }

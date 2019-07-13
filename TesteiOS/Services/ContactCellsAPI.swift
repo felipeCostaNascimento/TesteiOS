@@ -8,13 +8,16 @@
 
 import Foundation
 
-class ContactCellsAPI: APIConfig {
-    var serviceConfiguration = Configuration(service: "cells.json")
+class ContactCellsAPI: DataAPI {
+    var config: APIConfigurationProtocol
     
+    init() {
+        self.config = APIConfig(serviceName: "cells.json")!
+    }
     
     func fetchData(url: URL, completion: @escaping ([ContactCell]?) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let resultData = data, error == nil, let httpResponse = response as? HTTPURLResponse, self.serviceConfiguration.isStatusValid(status: httpResponse.statusCode) {
+            if let resultData = data, error == nil, let httpResponse = response as? HTTPURLResponse, self.config.isStatusValid(status: httpResponse.statusCode) {
                 var contactCells: [ContactCell] = []
                 do {
                     let json = try JSONSerialization.jsonObject(with: resultData, options: .allowFragments)
@@ -42,8 +45,8 @@ class ContactCellsAPI: APIConfig {
 
 extension ContactCellsAPI: ContactCellsStoreProtocol {
     func fetchContactCells(completionHandler: @escaping ([ContactCell], ContactCellsStoreError?) -> Void) {
-        guard let url = URL(string: serviceConfiguration.fullEndpoint()) else {
-            completionHandler([], ContactCellsStoreError.CannotFetch("Wrong url service \(serviceConfiguration.fullEndpoint())"))
+        guard let url = URL(string: config.serviceEndpoint()) else {
+            completionHandler([], ContactCellsStoreError.CannotFetch("Wrong url service \(config.serviceEndpoint())"))
             return
         }
         fetchData(url: url) { (result) in
@@ -56,7 +59,7 @@ extension ContactCellsAPI: ContactCellsStoreProtocol {
     }
     
     func fetchContactCells(completionHandler: @escaping ContactCellsStoreFetchContactCellsCompletionHandler) {
-        guard let url = URL(string: serviceConfiguration.fullEndpoint()) else {
+        guard let url = URL(string: config.serviceEndpoint()) else {
             completionHandler(ContactCellsStoreResult.Failure(error: ContactCellsStoreError.CannotFetch("Cannot fetch contact cells")))
             return
         }
@@ -70,7 +73,7 @@ extension ContactCellsAPI: ContactCellsStoreProtocol {
     }
     
     func fetchContactCells(completionHandler: @escaping (() throws -> [ContactCell]) -> Void) {
-        guard let url = URL(string: serviceConfiguration.fullEndpoint()) else {
+        guard let url = URL(string: config.serviceEndpoint()) else {
             completionHandler{ return [] }
             return
         }
