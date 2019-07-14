@@ -15,6 +15,10 @@ class ContactCellsAPI: DataAPI {
         self.config = APIConfig(serviceName: "cells.json")!
     }
     
+    init(config: APIConfigurationProtocol) {
+        self.config = config
+    }
+    
     func fetchData(url: URL, completion: @escaping ([ContactCell]?) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let resultData = data, error == nil, let httpResponse = response as? HTTPURLResponse, self.config.isStatusValid(status: httpResponse.statusCode) {

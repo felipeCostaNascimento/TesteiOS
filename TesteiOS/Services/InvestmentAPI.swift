@@ -13,7 +13,11 @@ class InvestmentAPI: DataAPI {
     var config: APIConfigurationProtocol
     
     init() {
-        self.config = APIConfig(serviceName: "cells.json")!
+        self.config = APIConfig(serviceName: "fund.json")!
+    }
+    
+    init(config: APIConfigurationProtocol) {
+        self.config = config
     }
     
     func fetchData(url: URL, completion: @escaping (Investment?) -> Void) {

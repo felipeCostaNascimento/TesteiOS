@@ -21,6 +21,10 @@ class CreateContactViewController: UIViewController {
     var router: (NSObjectProtocol & CreateContactRoutingLogic)?
     
     
+    @IBOutlet weak var formContainer: UIStackView!
+    
+    
+    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -73,11 +77,15 @@ class CreateContactViewController: UIViewController {
         let request = CreateContact.FetchContactCells.Request()
         interactor?.fetchContactCells(request: request)
     }
+    
+    
 }
 
 
 extension CreateContactViewController: CreateContactDisplayLogic {
     func displayFetchedContactCells(viewModel: CreateContact.FetchContactCells.ViewModel) {
-        print(viewModel.contactCells)
+        for df in viewModel.dynamicForms {
+            formContainer.addArrangedSubview(df.getUIElement())
+        }
     }
 }

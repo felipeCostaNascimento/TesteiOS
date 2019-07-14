@@ -10,8 +10,8 @@ import UIKit
 
 
 enum CreateContact {
-    // MARK: Use cases
     
+    // MARK: Use cases
     enum FetchContactCells {
         struct Request {
             
@@ -22,7 +22,7 @@ enum CreateContact {
         }
         
         struct ViewModel {
-            var contactCells: [ContactCell]
+            var dynamicForms: [DynamicForm]
         }
     }
 }

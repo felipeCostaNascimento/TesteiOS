@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ContactCell {
+struct ContactCell: FormCell {
     var id: Int
     var type: CellType
     var message: String
@@ -19,6 +19,16 @@ struct ContactCell {
     var required: Bool
 }
 
+protocol FormCell {
+    var id: Int {get set}
+    var type: CellType {get set}
+    var message: String {get set}
+    var typefield: TypeField? {get set}
+    var hidden: Bool {get set}
+    var topSpacing: Float {get set}
+    var show: Int? {get set}
+    var required: Bool {get set}
+}
 
 enum CellType: Int {
     case field = 1 //textfield

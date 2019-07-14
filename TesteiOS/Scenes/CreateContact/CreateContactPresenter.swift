@@ -21,7 +21,33 @@ class CreateContactPresenter {
 
 extension CreateContactPresenter: CreateContactPresentationLogic {
     func presentFetchedContactCells(response: CreateContact.FetchContactCells.Response) {
-        let viewModel = CreateContact.FetchContactCells.ViewModel(contactCells: response.contactCells)
+        let contactCells = response.contactCells
+        var dynamicForms:[DynamicForm] = []
+        
+        for cc in contactCells {
+            var dynamicForm:DynamicForm
+            
+            switch cc.type {
+            case .field:
+                dynamicForm = DynamicFormTextField(formCell: cc)
+                break
+            case .text:
+                dynamicForm = DynamicFormTextField(formCell: cc)
+                break
+            case .image:
+                dynamicForm = DynamicFormTextField(formCell: cc)
+                break
+            case .checkbox:
+                dynamicForm = DynamicFormTextField(formCell: cc)
+                break
+            case .send:
+                dynamicForm = DynamicFormTextField(formCell: cc)
+                break
+            }
+            
+            dynamicForms.append(dynamicForm)
+        }
+        let viewModel = CreateContact.FetchContactCells.ViewModel(dynamicForms: dynamicForms)
         viewController?.displayFetchedContactCells(viewModel: viewModel)
     }
 }

@@ -42,7 +42,7 @@ protocol APIConfigurationProtocol {
 }
 
 protocol DataAPI {
-    var config: APIConfigurationProtocol {get set}
+    var config: APIConfigurationProtocol {get}
 }
 
 
