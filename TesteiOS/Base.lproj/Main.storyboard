@@ -17,13 +17,6 @@
                     <view key="view" contentMode="scaleToFill" id="HCW-72-RRd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARy-NH-yy3">
-                                <rect key="frame" x="50" y="89" width="192" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="ShowInvestment"/>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="2Sg-Qb-Brp"/>
                     </view>
@@ -32,7 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55A-5J-eGj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1166" y="-391"/>
+            <point key="canvasLocation" x="1165.5999999999999" y="-391.75412293853077"/>
         </scene>
         <!--Investimento-->
         <scene sceneID="uMw-FE-DbJ">
@@ -59,24 +52,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ez9-kv-HRc">
-                                <rect key="frame" x="30" y="64" width="315" height="554"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ynl-Yi-5ma">
+                                <rect key="frame" x="30" y="84" width="315" height="514"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ez9-kv-HRc" firstAttribute="top" secondItem="V62-D6-LoR" secondAttribute="top" id="1Ei-Vy-jzL"/>
-                            <constraint firstItem="ez9-kv-HRc" firstAttribute="leading" secondItem="V62-D6-LoR" secondAttribute="leading" constant="30" id="97X-JR-uLh"/>
-                            <constraint firstItem="V62-D6-LoR" firstAttribute="trailing" secondItem="ez9-kv-HRc" secondAttribute="trailing" constant="30" id="Es8-cR-wrO"/>
-                            <constraint firstItem="V62-D6-LoR" firstAttribute="bottom" secondItem="ez9-kv-HRc" secondAttribute="bottom" id="KaU-fc-Rwg"/>
+                            <constraint firstItem="V62-D6-LoR" firstAttribute="trailing" secondItem="Ynl-Yi-5ma" secondAttribute="trailing" constant="30" id="QxX-dT-8i7"/>
+                            <constraint firstItem="V62-D6-LoR" firstAttribute="bottom" secondItem="Ynl-Yi-5ma" secondAttribute="bottom" constant="20" id="lxe-cV-elD"/>
+                            <constraint firstItem="Ynl-Yi-5ma" firstAttribute="leading" secondItem="V62-D6-LoR" secondAttribute="leading" constant="30" id="qTb-It-1id"/>
+                            <constraint firstItem="Ynl-Yi-5ma" firstAttribute="top" secondItem="V62-D6-LoR" secondAttribute="top" constant="20" id="u0F-fS-Nb8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="V62-D6-LoR"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="rIh-7G-dLY"/>
                     <navigationItem key="navigationItem" title="Contato" id="ZsD-Ph-Bmg"/>
                     <connections>
-                        <outlet property="formContainer" destination="ez9-kv-HRc" id="fRH-6k-drx"/>
+                        <outlet property="formContainer" destination="Ynl-Yi-5ma" id="Pwl-Gp-C3V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTK-cH-xxo" userLabel="First Responder" sceneMemberID="firstResponder"/>

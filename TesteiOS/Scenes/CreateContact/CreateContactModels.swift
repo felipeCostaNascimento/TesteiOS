@@ -26,17 +26,19 @@ enum CreateContact {
         }
     }
     
-    enum BuildFormView {
+    enum FormViewLayout {
         struct Request {
-            var formElements: [FormElement]
+            var formCells: [FormCell]
+            var formElements: [UIView]
         }
         
         struct Response {
-            var formElements: [FormElement]
+            var formCells: [FormCell]
+            var formElements: [UIView]
         }
         
         struct ViewModel {
-            var formView: UIView
+            var formConstraints: [NSLayoutConstraint]
         }
     }
 }

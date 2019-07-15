@@ -9,12 +9,6 @@
 import UIKit
 
 
-protocol TabActivableView: UIView {
-    var activeView: UIView {get}
-    func setActiveIndex(index:Int)
-    func getActiveIndex() -> Int
-}
-
 protocol MainTabBarPresentationLogic {
     func presentTabBarView(response: MainTabBar.TabBarView.Response)
 }

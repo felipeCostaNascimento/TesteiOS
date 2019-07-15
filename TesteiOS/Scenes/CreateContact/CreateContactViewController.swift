@@ -11,7 +11,7 @@ import UIKit
 
 protocol CreateContactDisplayLogic: class {
     func displayFetchedContactCells(viewModel: CreateContact.FetchContactCells.ViewModel)
-    func displayBuiltFormView(viewModel: CreateContact.BuildFormView.ViewModel)
+    func displayBuiltFormView(viewModel: CreateContact.FormViewLayout.ViewModel)
 }
 
 
@@ -24,7 +24,7 @@ class CreateContactViewController: UIViewController {
     
     var formElements: [FormElement] = []
     
-    @IBOutlet weak var formContainer: UIStackView!
+    @IBOutlet weak var formContainer: UIView!
     
     
     
@@ -81,18 +81,26 @@ class CreateContactViewController: UIViewController {
         interactor?.fetchContactCells(request: request)
     }
     
-    
 }
 
 
 extension CreateContactViewController: CreateContactDisplayLogic {
     func displayFetchedContactCells(viewModel: CreateContact.FetchContactCells.ViewModel) {
         formElements = viewModel.formElements
-        let request = CreateContact.BuildFormView.Request(formElements: formElements)
+        
+        let formViews = formElements.map{ return $0.getUIElement() }
+        let formCells = formElements.map{ return $0.getFormCell() }
+        let _ = formViews.map{ formContainer.addSubview($0) }
+        
+        let request = CreateContact.FormViewLayout.Request(formCells: formCells, formElements: formViews)
         interactor?.buildFormView(request: request)
     }
     
-    func displayBuiltFormView(viewModel: CreateContact.BuildFormView.ViewModel) {
-        self.view.addSubview(viewModel.formView)
+    func displayBuiltFormView(viewModel: CreateContact.FormViewLayout.ViewModel) {
+        NSLayoutConstraint.activate(viewModel.formConstraints)
+//        formContainer.addConstraints(viewModel.formConstraints)
     }
+    
+    
+    
 }

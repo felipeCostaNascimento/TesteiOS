@@ -11,7 +11,7 @@ import UIKit
 
 protocol CreateContactPresentationLogic {
     func presentFetchedContactCells(response: CreateContact.FetchContactCells.Response)
-    func presentBuildFormView(response: CreateContact.BuildFormView.Response)
+    func presentBuildFormView(response: CreateContact.FormViewLayout.Response)
 }
 
 
@@ -30,17 +30,10 @@ extension CreateContactPresenter: CreateContactPresentationLogic {
             
             switch cc.type {
             case .field:
-                let df = FormTextField(formCell: cc)
-//                df.elementBuilder = { cell in
-//                    let element = UITextField(frame: CGRect.zero)
-//                    element.text = cell.message
-//                    element.textColor = UIColor.green
-//                    return element
-//                }
-                dynamicForm = df
+                dynamicForm = FormTextField(formCell: cc)
                 break
             case .text:
-                dynamicForm = FormTextField(formCell: cc)
+                dynamicForm = FormLabel(formCell: cc)
                 break
             case .image:
                 dynamicForm = FormTextField(formCell: cc)
@@ -60,7 +53,11 @@ extension CreateContactPresenter: CreateContactPresentationLogic {
     }
     
     
-    func presentBuildFormView(response: CreateContact.BuildFormView.Response) {
+    func presentBuildFormView(response: CreateContact.FormViewLayout.Response) {
+        let formBuilder = VerticalViewBuilder()
+        let constrainsts = formBuilder.build(subViews: response.formElements)
         
+        let viewModel = CreateContact.FormViewLayout.ViewModel(formConstraints: constrainsts)
+        viewController?.displayBuiltFormView(viewModel: viewModel)
     }
 }

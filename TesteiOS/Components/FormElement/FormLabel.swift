@@ -16,7 +16,10 @@ class FormLabel: FormElement, FormElementBuilder {
     var formCell: FormCell
     
     var elementBuilder: (FormCell) -> UILabel = { cell in
-        return UILabel(frame: CGRect.zero)
+        let element = UILabel(frame: CGRect.zero)
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = cell.message
+        return element
     }
     
     required init(formCell: FormCell) {

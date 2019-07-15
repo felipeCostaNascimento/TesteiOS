@@ -9,6 +9,12 @@
 import UIKit
 
 
+protocol TabActivableView: UIView {
+    var activeView: UIView {get}
+    func setActiveIndex(index:Int)
+    func getActiveIndex() -> Int
+}
+
 class MainTabBarActivableView: UIView, TabActivableView {
     let topBorder:CGFloat = 3
     var activeView:UIView = UIView(frame: CGRect.zero)

@@ -21,6 +21,8 @@ class FormTextField: FormElement, FormElementBuilder {
     
     var elementBuilder: (FormCell) -> UITextField = { cell in
         let element = UITextField(frame: CGRect.zero)
+        element.borderStyle = .roundedRect
+        element.translatesAutoresizingMaskIntoConstraints = false
         element.placeholder = cell.message
         element.isHidden = cell.hidden
         return element
