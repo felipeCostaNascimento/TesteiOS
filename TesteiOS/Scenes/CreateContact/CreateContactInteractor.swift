@@ -11,6 +11,7 @@ import UIKit
 
 protocol CreateContactBusinessLogic {
     func fetchContactCells(request: CreateContact.FetchContactCells.Request)
+    func buildFormView(request: CreateContact.BuildFormView.Request)
 }
 
 
@@ -33,6 +34,11 @@ extension CreateContactInteractor: CreateContactBusinessLogic {
             let response = CreateContact.FetchContactCells.Response(contactCells: contactCells)
             self.presenter?.presentFetchedContactCells(response: response)
         }
+    }
+    
+    func buildFormView(request: CreateContact.BuildFormView.Request) {
+        let response = CreateContact.BuildFormView.Response(formElements: request.formElements)
+        self.presenter?.presentBuildFormView(response: response)
     }
 }
 

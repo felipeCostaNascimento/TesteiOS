@@ -11,6 +11,7 @@ import UIKit
 
 protocol CreateContactDisplayLogic: class {
     func displayFetchedContactCells(viewModel: CreateContact.FetchContactCells.ViewModel)
+    func displayBuiltFormView(viewModel: CreateContact.BuildFormView.ViewModel)
 }
 
 
@@ -20,6 +21,8 @@ class CreateContactViewController: UIViewController {
     var interactor: CreateContactBusinessLogic?
     var router: (NSObjectProtocol & CreateContactRoutingLogic)?
     
+    
+    var formElements: [FormElement] = []
     
     @IBOutlet weak var formContainer: UIStackView!
     
@@ -84,8 +87,12 @@ class CreateContactViewController: UIViewController {
 
 extension CreateContactViewController: CreateContactDisplayLogic {
     func displayFetchedContactCells(viewModel: CreateContact.FetchContactCells.ViewModel) {
-        for df in viewModel.dynamicForms {
-            formContainer.addArrangedSubview(df.getUIElement())
-        }
+        formElements = viewModel.formElements
+        let request = CreateContact.BuildFormView.Request(formElements: formElements)
+        interactor?.buildFormView(request: request)
+    }
+    
+    func displayBuiltFormView(viewModel: CreateContact.BuildFormView.ViewModel) {
+        self.view.addSubview(viewModel.formView)
     }
 }

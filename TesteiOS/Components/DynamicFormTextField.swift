@@ -9,30 +9,31 @@
 import UIKit
 
 
-class DynamicFormTextField: DynamicForm, CustomUIElement {
+class FormTextField: FormElement, FormElementBuilder {
     typealias T = UITextField
     
     var element:UITextField?
     var formCell: FormCell
     
-    var customElement: () -> UITextField = {
-        return UITextField(frame: CGRect.zero)
-    }
-    
     required init(formCell: FormCell) {
         self.formCell = formCell
     }
     
+    var elementBuilder: (FormCell) -> UITextField = { cell in
+        let element = UITextField(frame: CGRect.zero)
+        element.placeholder = cell.message
+        element.isHidden = cell.hidden
+        return element
+    }
+    
     func getUIElement() -> UIView {
-        let element = buildElement()
+        let element = elementBuilder(formCell)
         self.element = element
         return element
     }
     
-    func buildElement() -> UITextField {
-        let element = customElement()
-        element.text = formCell.message
-        return element
+    func getFormCell() -> FormCell {
+        return formCell
     }
     
     func validate() -> Bool {

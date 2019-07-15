@@ -22,7 +22,21 @@ enum CreateContact {
         }
         
         struct ViewModel {
-            var dynamicForms: [DynamicForm]
+            var formElements: [FormElement]
+        }
+    }
+    
+    enum BuildFormView {
+        struct Request {
+            var formElements: [FormElement]
+        }
+        
+        struct Response {
+            var formElements: [FormElement]
+        }
+        
+        struct ViewModel {
+            var formView: UIView
         }
     }
 }

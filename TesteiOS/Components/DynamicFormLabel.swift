@@ -8,14 +8,14 @@
 
 import UIKit
 
-class DynamicFormLabel: DynamicForm, CustomUIElement {
+class FormLabel: FormElement, FormElementBuilder {
     typealias T = UILabel
     
     var element:UILabel?
     
     var formCell: FormCell
     
-    var customElement: () -> UILabel = {
+    var elementBuilder: (FormCell) -> UILabel = { cell in
         return UILabel(frame: CGRect.zero)
     }
     
@@ -24,15 +24,13 @@ class DynamicFormLabel: DynamicForm, CustomUIElement {
     }
     
     func getUIElement() -> UIView {
-        let element = buildElement()
+        let element = elementBuilder(formCell)
         self.element = element
         return element
     }
     
-    func buildElement() -> UILabel {
-        let element = customElement()
-        element.text = formCell.message
-        return element
+    func getFormCell() -> FormCell {
+        return formCell
     }
     
     func validate() -> Bool {
