@@ -11,22 +11,19 @@ import UIKit
 
 class VerticalLayoutBuilder: LayoutBuilder {
     
-    func build(subViews: [UIView], layoutMetrics: [LayoutMetrics]?) -> [NSLayoutConstraint] {
+    func build(subViews: [UIView], layoutMetrics: [LayoutMetrics]) -> [NSLayoutConstraint]? {
+        guard subViews.count == layoutMetrics.count else {
+            debugPrint("SubViews and layoutMetrics parameters must have the same items count.")
+            return nil
+        }
         var allConstraints:[NSLayoutConstraint] = []
-        
         let views:[String: Any] = sequencialNameViews(views: subViews)
-        
         
         for i in 0..<views.count {
             let referenceView = i > 0 ? "view\(i-1)" : nil
-            var metrics:[MetricParams:CGFloat]?
-            
-            if let lm = layoutMetrics {
-                metrics = lm[i].getLayoutMetrics()
-            }
-            
-            let hFormat = createHorizontalFormat(view: "view\(i)", left: metrics?[.left], right: metrics?[.right])
-            let vFormat = createVerticalFormat(view: "view\(i)", referenceView: referenceView, top: metrics?[.top], height: metrics?[.height])
+            let metrics = layoutMetrics[i].getLayoutMetrics()
+            let hFormat = createHorizontalFormat(view: "view\(i)", metrics: metrics)
+            let vFormat = createVerticalFormat(view: "view\(i)", referenceView: referenceView, metrics: metrics)
             
             allConstraints += createConstraints(hFormat: hFormat, vFormat: vFormat, views: views)
         }
@@ -59,7 +56,7 @@ class VerticalLayoutBuilder: LayoutBuilder {
         if let v = value {
             return "-\(v)-"
         }
-        return "-"
+        return ""
     }
     
     func getSizeFormat(value:CGFloat?) -> String {
@@ -69,21 +66,23 @@ class VerticalLayoutBuilder: LayoutBuilder {
         return ""
     }
     
-    func createHorizontalFormat(view:String, left:CGFloat? = nil, right: CGFloat? = nil) -> String {
-        let format = "H:|:left[:view]:right|"
+    func createHorizontalFormat(view:String, metrics:[MetricParams:CGFloat]) -> String {
+        let format = "H:|:left[:view:width]:right|"
         
-        let sLeft = getSpacingFormat(value: left)
-        let sRight = getSpacingFormat(value: right)
+        let sLeft = getSpacingFormat(value: metrics[.left])
+        let sWidth = getSpacingFormat(value: metrics[.width])
+        let sRight = getSpacingFormat(value: metrics[.right])
         
         return format.replacingOccurrences(of: ":left", with: sLeft)
                      .replacingOccurrences(of: ":view", with: view)
+                     .replacingOccurrences(of: ":width", with: sWidth)
                      .replacingOccurrences(of: ":right", with: sRight)
     }
     
-    func createVerticalFormat(view:String, referenceView:String? = nil, top:CGFloat? = nil, height:CGFloat? = nil) -> String {
+    func createVerticalFormat(view:String, referenceView:String?, metrics:[MetricParams:CGFloat]) -> String {
         
-        let sTop = getSpacingFormat(value: top)
-        let sHeight = getSizeFormat(value: height)
+        let sTop = getSpacingFormat(value: metrics[.top])
+        let sHeight = getSizeFormat(value: metrics[.height])
         
         if let rv = referenceView {
             let format = "V:[:referenceView]:top[:view:height]"

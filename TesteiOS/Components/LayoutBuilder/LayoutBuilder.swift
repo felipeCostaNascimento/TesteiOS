@@ -10,11 +10,12 @@ import UIKit
 
 
 protocol LayoutBuilder {
-    func build(subViews:[UIView], layoutMetrics:[LayoutMetrics]?) -> [NSLayoutConstraint]
+    func build(subViews:[UIView], layoutMetrics:[LayoutMetrics]) -> [NSLayoutConstraint]?
 }
 
 protocol LayoutMetrics {
-    func getLayoutMetrics() -> [MetricParams:CGFloat]?
+    func getLayoutMetrics() -> [MetricParams:CGFloat]
+    func getDefaultMetrics() -> [MetricParams:CGFloat]
 }
 
 enum MetricParams {
@@ -31,7 +32,10 @@ enum MetricParams {
 struct SimpleLayoutMetrics: LayoutMetrics {
     var metricParams:[MetricParams:CGFloat]
     
-    func getLayoutMetrics() -> [MetricParams : CGFloat]? {
+    func getLayoutMetrics() -> [MetricParams : CGFloat] {
         return metricParams
+    }
+    func getDefaultMetrics() -> [MetricParams : CGFloat] {
+        return [.left: 8, .top: 8, .right: 8]
     }
 }

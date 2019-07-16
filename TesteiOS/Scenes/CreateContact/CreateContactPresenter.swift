@@ -56,9 +56,9 @@ extension CreateContactPresenter: CreateContactPresentationLogic {
     func presentBuildFormView(response: CreateContact.FormViewLayout.Response) {
         let formBuilder = VerticalLayoutBuilder()
         let metrics = response.formCells.map{ cell in return SimpleLayoutMetrics(metricParams: [.top: cell.topSpacing, .left: 0, .right: 0]) }
-        let constrainsts = formBuilder.build(subViews: response.formElements, layoutMetrics: metrics)
-        
-        let viewModel = CreateContact.FormViewLayout.ViewModel(formConstraints: constrainsts)
-        viewController?.displayBuiltFormView(viewModel: viewModel)
+        if let constrainsts = formBuilder.build(subViews: response.formElements, layoutMetrics: metrics) {
+            let viewModel = CreateContact.FormViewLayout.ViewModel(formConstraints: constrainsts)
+            viewController?.displayBuiltFormView(viewModel: viewModel)
+        }
     }
 }
