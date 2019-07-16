@@ -6,7 +6,7 @@
 //  Copyright © 2019 Felipe Costa. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct ContactCell: FormCell {
     var id: Int
@@ -14,7 +14,7 @@ struct ContactCell: FormCell {
     var message: String
     var typefield: TypeField?
     var hidden: Bool
-    var topSpacing: Float
+    var topSpacing: CGFloat
     var show: Int?
     var required: Bool
 }
@@ -25,7 +25,7 @@ protocol FormCell {
     var message: String {get set}
     var typefield: TypeField? {get set}
     var hidden: Bool {get set}
-    var topSpacing: Float {get set}
+    var topSpacing: CGFloat {get set}
     var show: Int? {get set}
     var required: Bool {get set}
 }
@@ -71,7 +71,7 @@ extension ContactCell {
             let message =       json["message"] as? String,
             let typefield =     json["typefield"],
             let hidden =        json["hidden"] as? Bool,
-            let topSpacing =    json["topSpacing"] as? Float,
+            let topSpacing =    json["topSpacing"] as? CGFloat,
             let show =          json["show"],
             let required =      json["required"] as? Bool
         else {

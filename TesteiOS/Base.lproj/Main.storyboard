@@ -53,15 +53,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ynl-Yi-5ma">
-                                <rect key="frame" x="30" y="84" width="315" height="514"/>
+                                <rect key="frame" x="30" y="64" width="315" height="554"/>
+                                <color key="backgroundColor" red="0.87450980389999999" green="0.48627450979999998" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="V62-D6-LoR" firstAttribute="trailing" secondItem="Ynl-Yi-5ma" secondAttribute="trailing" constant="30" id="QxX-dT-8i7"/>
-                            <constraint firstItem="V62-D6-LoR" firstAttribute="bottom" secondItem="Ynl-Yi-5ma" secondAttribute="bottom" constant="20" id="lxe-cV-elD"/>
+                            <constraint firstItem="V62-D6-LoR" firstAttribute="bottom" secondItem="Ynl-Yi-5ma" secondAttribute="bottom" id="lxe-cV-elD"/>
                             <constraint firstItem="Ynl-Yi-5ma" firstAttribute="leading" secondItem="V62-D6-LoR" secondAttribute="leading" constant="30" id="qTb-It-1id"/>
-                            <constraint firstItem="Ynl-Yi-5ma" firstAttribute="top" secondItem="V62-D6-LoR" secondAttribute="top" constant="20" id="u0F-fS-Nb8"/>
+                            <constraint firstItem="Ynl-Yi-5ma" firstAttribute="top" secondItem="V62-D6-LoR" secondAttribute="top" id="u0F-fS-Nb8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="V62-D6-LoR"/>
                     </view>
